@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>About</title>
-      <link>http://veryu.gitee.io/about/</link>
-      <pubDate>Fri, 13 Sep 2019 08:23:14 +0800</pubDate>
-      
-      <guid>http://veryu.gitee.io/about/</guid>
-      <description>人生最难得也最有意义的是， 认识到自己是一个平凡的人之后， 还能努力做好一个平凡的人。</description>
-    </item>
-    
-    <item>
       <title>贝叶斯概率</title>
       <link>http://veryu.gitee.io/post/prml-bayesian-probability/</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>

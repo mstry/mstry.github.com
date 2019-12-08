@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://118.25.103.152/sitemap.xml
+Sitemap: http://veryu.gitee.io/sitemap.xml

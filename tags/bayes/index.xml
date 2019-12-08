@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>bayes on to be a better rockyu</title>
-    <link>http://118.25.103.152/tags/bayes/</link>
-    <description>Recent content in bayes on to be a better rockyu</description>
+    <title>bayes on to be a better veryu</title>
+    <link>http://veryu.gitee.io/tags/bayes/</link>
+    <description>Recent content in bayes on to be a better veryu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 04 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://118.25.103.152/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://veryu.gitee.io/tags/bayes/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>贝叶斯概率</title>
-      <link>http://118.25.103.152/post/prml-bayesian-probability/</link>
+      <link>http://veryu.gitee.io/post/prml-bayesian-probability/</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://118.25.103.152/post/prml-bayesian-probability/</guid>
+      <guid>http://veryu.gitee.io/post/prml-bayesian-probability/</guid>
       <description>1. 不确定性 在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如</description>
     </item>
     

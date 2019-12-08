@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>贝叶斯概率 - to be a better rockyu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="rockyu" /><meta name="description" content="1. 不确定性 在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
+
+
+<link rel="canonical" href="http://118.25.103.152/post/prml-bayesian-probability/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="贝叶斯概率" />
+<meta property="og:description" content="1. 不确定性 在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://118.25.103.152/post/prml-bayesian-probability/" />
+<meta property="article:published_time" content="2018-03-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-03-04T00:00:00+00:00" />
+<meta itemprop="name" content="贝叶斯概率">
+<meta itemprop="description" content="1. 不确定性 在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如">
+
+
+<meta itemprop="datePublished" content="2018-03-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-03-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="929">
+
+
+
+<meta itemprop="keywords" content="PRML,bayes,probability," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="贝叶斯概率"/>
+<meta name="twitter:description" content="1. 不确定性 在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Oh my rockyu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Oh my rockyu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+<script data-isso="http://118.25.103.152/isso"
+        data-isso-id="thread-id"
+        data-isso-css="true"
+        data-isso-lang="zh"
+        data-isso-reply-to-self="true"
+        data-isso-require-author="true"
+        data-isso-require-email="false"
+        data-isso-max-comments-top="10"
+        data-isso-max-comments-nested="5"
+        data-isso-reveal-on-click="5"
+        data-isso-avatar="true"
+        data-isso-avatar-bg="#f0f0f0"
+        data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
+        data-isso-vote="true"
+        data-isso-vote-levels=""
+        data-isso-feed="false"
+        src="http://118.25.103.152/isso/js/embed.min.js"></script>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">贝叶斯概率</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-03-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/"> 学习 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-不确定性">1. 不确定性</a></li>
+<li><a href="#2-贝叶斯定理">2. 贝叶斯定理</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-不确定性">1. 不确定性</h1>
+
+<p>在作出合理的推断时，如果我们想要尊重常识，那么使用概率论来表达不确定性不是可选的，而是不可避免的。例如，Cox (1946)证明，如果用数值来表示置信的程度，那么编码了这种置信度中符合常识的一组简单的公理能够唯一地推导出一组规则来操控置信的程度，这组规则等价于概率的加和规则和乘积规则。</p>
+
+<h1 id="2-贝叶斯定理">2. 贝叶斯定理</h1>
+
+<p>贝叶斯定理通过将观察到的数据与常识假设融合，来把先验概率转化为后验概率。
+例如，在对多项式曲线拟合的参数$w$进行推断时，在观察到数据之前，可以有一些关于参数$w$的假设，以先验概率$p(w)$的形式给出；观测数据$\mathcal{D}=\lbrace t_1,\ldots,t_n\rbrace$的效果可以通过条件概率$p(\mathcal{D}|w)$表达；在观测到$\mathcal{D}$之后，通过后验概率来估计$w$的不确定性。贝叶斯定理的形式为：</p>
+
+<p>$$
+p(w|\mathcal{D})=\frac{p(\mathcal{D}|w)p(w)}{p(\mathcal{D})} \tag{2.1}\label{2.1}
+$$</p>
+
+<p>贝叶斯定理右侧的量$p(\mathcal{D}|w)$由观测数据集$\mathcal{D}$来估计，可以被看成参数向量$w$的函数，被称为似然函数(likelihood function)。它表达了在不同的参数向量$w$下，观测数据出现的可能性的大小。注意，似然函数不是$w$的概率分布，并且它关于$w$的积分并不(一定)等于1。给定似然函数的定义，可以用自然语言表述贝叶斯定理
+$$posterior\propto likelihood\times prior \tag{2.2}\label{2.2}$$
+其中所有的量都可以看成$w$的函数。
+公式$\eqref{2.1}$的分母是一个归一化常数，确保了左侧的后验概率分布是一个合理的概率密度(积分为1)。对公式$\eqref{2.1}$的两侧关于$w$进行积分，可以用后验概率分布和似然函数来表达贝叶斯定理的分母：
+$$p(\mathcal{D})=\int{p(\mathcal{D}|w)p(w)dw} \tag{2.3}\label{2.3}$$</p>
+
+<p>在贝叶斯观点和频率学家观点中，似然函数$p(\mathcal{D}|w)$都起着重要的作用。然而，在两种观点中，使用的方式有着本质的不同。在频率学家的观点中，$w$被认为是一个固定的参数，它的值由某种形式的“估计”来确定，这个估计的误差通过考察可能的数据集$\mathcal{D}$的概率分布来得到。相反，从贝叶斯的观点来看，只有一个数据集集$\mathcal{D}$(即实际观测到的数据集)，参数的不确定性通过$w$的概率分布来表达。</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+<li>1. <a href="刘未鹏 - 数学之美番外篇：平凡而又神奇的贝叶斯方法">http://mindhacks.cn/2008/09/21/the-magical-bayesian-method/</a></li>
+</ul>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/prml/">PRML</a>
+          <a href="/tags/bayes/">bayes</a>
+          <a href="/tags/probability/">probability</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E5%B7%B1%E4%BA%A5%E4%B8%AD%E7%A7%8B/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">己亥中秋</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/prml-gaussion-distribtion/">
+            <span class="next-text nav-default">高斯分布</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      
+<section id="isso-thread"></section>
+
+<div class="social-links">
+      <a href="mailto:yufengcui1018@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://mstry.github.com" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">rockyu</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

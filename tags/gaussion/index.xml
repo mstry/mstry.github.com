@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gaussion on to be a better rockyu</title>
+    <link>http://118.25.103.152/tags/gaussion/</link>
+    <description>Recent content in Gaussion on to be a better rockyu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://118.25.103.152/tags/gaussion/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>高斯分布</title>
+      <link>http://118.25.103.152/post/prml-gaussion-distribtion/</link>
+      <pubDate>Thu, 04 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://118.25.103.152/post/prml-gaussion-distribtion/</guid>
+      <description>1. Gaussion分布 1.1 基本性质 (1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$ 证明：记</description>
+    </item>
+    
+  </channel>
+</rss>

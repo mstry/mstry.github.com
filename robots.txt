@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: http://118.25.103.152/sitemap.xml

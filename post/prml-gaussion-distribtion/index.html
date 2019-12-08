@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>高斯分布 - to be a better rockyu</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="rockyu" /><meta name="description" content="1. Gaussion分布 1.1 基本性质 (1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{&#43;\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$ 证明：记" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
+
+
+<link rel="canonical" href="http://118.25.103.152/post/prml-gaussion-distribtion/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="高斯分布" />
+<meta property="og:description" content="1. Gaussion分布 1.1 基本性质 (1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{&#43;\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$ 证明：记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://118.25.103.152/post/prml-gaussion-distribtion/" />
+<meta property="article:published_time" content="2018-01-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-01-04T00:00:00+00:00" />
+<meta itemprop="name" content="高斯分布">
+<meta itemprop="description" content="1. Gaussion分布 1.1 基本性质 (1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{&#43;\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$ 证明：记">
+
+
+<meta itemprop="datePublished" content="2018-01-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="795">
+
+
+
+<meta itemprop="keywords" content="PRML,Gaussion,distribution," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="高斯分布"/>
+<meta name="twitter:description" content="1. Gaussion分布 1.1 基本性质 (1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{&#43;\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$ 证明：记"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Oh my rockyu</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">归档</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Oh my rockyu</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">归档</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+<script data-isso="http://118.25.103.152/isso"
+        data-isso-id="thread-id"
+        data-isso-css="true"
+        data-isso-lang="zh"
+        data-isso-reply-to-self="true"
+        data-isso-require-author="true"
+        data-isso-require-email="false"
+        data-isso-max-comments-top="10"
+        data-isso-max-comments-nested="5"
+        data-isso-reveal-on-click="5"
+        data-isso-avatar="true"
+        data-isso-avatar-bg="#f0f0f0"
+        data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
+        data-isso-vote="true"
+        data-isso-vote-levels=""
+        data-isso-feed="false"
+        src="http://118.25.103.152/isso/js/embed.min.js"></script>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">高斯分布</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-04 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/"> 学习 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-gaussion分布">1. Gaussion分布</a>
+<ul>
+<li><a href="#1-1-基本性质">1.1 基本性质</a></li>
+</ul></li>
+<li><a href="#1-2-多维高斯分布">1.2 多维高斯分布</a></li>
+<li><a href="#1-3-高斯分布的最大似然估计">1.3 高斯分布的最大似然估计</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-gaussion分布">1. Gaussion分布</h1>
+
+<h2 id="1-1-基本性质">1.1 基本性质</h2>
+
+<p>(1) 求证：高斯分布满足归一化，即$\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$</p>
+
+<p>证明：记</p>
+
+<div>$$
+I=\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}=\int_{-\infty}^{+\infty}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}dx}
+$$</div>
+
+<p>令$y=x-u$，则</p>
+
+<div>$$
+\begin{aligned}
+I&=\int_{-\infty}^{+\infty}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}y^2}dy} \\
+I^2&=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}{\frac{1}{2\pi\sigma^2}e^{-\frac{1}{2\sigma^2}(u^2+v^2)}dudv}
+\end{aligned}
+$$</div>
+
+<p>令$u=r\sin\theta, v=r\cos\theta$，则$dudv=rd\theta dr$，</p>
+
+<div>$$
+\begin{aligned}
+I^2&=\int_{0}^{2\pi}\int_{0}^{+\infty}{\frac{1}{2\pi\sigma^2}e^{-\frac{1}{2\sigma^2}r^2}rdrd\theta}\\
+&=\int_{0}^{2\pi}{\left[-\frac{1}{2\pi}e^{-\frac{1}{2\sigma^2}r^2}\right]_{r=0}^{+\infty}d\theta}\\
+&=\int_{0}^{2\pi}{\frac{1}{2\pi}d\theta}=1
+\end{aligned}
+$$</div>
+
+<div>$$
+\begin{array}
+{l}
+\because \mathcal N(x|\mu,\sigma^2)\gt 0\\
+\therefore I \gt 0,\; \int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1
+\end{array}
+$$</div>
+
+<p>(2) 求证：高斯分布的期望（一阶矩）为均值$\mu$，即$\Bbb E[x]=\mu,\; x\sim\mathcal N(x|\mu,\sigma^2)$</p>
+
+<p>证明：</p>
+
+<div>$$\Bbb E[x]=\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)xdx} \\
+=\int_{-\infty}^{+\infty}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}xdx}$$</div>
+
+<p>令$y=x-u$，则</p>
+
+<div>$$
+\begin{aligned}
+\Bbb E[x]&=\int_{-\infty}^{+\infty}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}y^2}(y+u)dy}\\
+&=u\int_{-\infty}^{+\infty}{\mathcal N(y|1,\sigma^2)dy}+\int_{-\infty}^{+\infty}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}y^2}ydy}\\
+&=u+\left[\frac{-\sigma^2}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}y^2}\right]_{y=-\infty}^{+\infty}\\
+&=u
+\end{aligned}
+$$</div>
+
+<p>(3) 求证：高斯分布的二阶矩为$\mu^2+\sigma^2$，即$\Bbb E[x^2]=\mu^2+\sigma^2,\; x\sim\mathcal N(x|\mu,\sigma^2)$</p>
+
+<p>证明： 已知高斯分布满足归一化，即$\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}=1$，则</p>
+
+<div>$$
+\begin{aligned}
+0&=\frac{\partial}{\partial\sigma^2}\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)dx}\\
+&=\int_{-\infty}^{+\infty}{\left[\frac{\partial}{\partial\sigma^2}\mathcal N(x|\mu,\sigma^2)\right]dx}\\
+&=\int_{-\infty}^{+\infty}{\left[
+-\frac{1}{2\sigma^2}\mathcal N(x|\mu,\sigma^2) + \frac{(x-u)^2}{2\sigma^4}\mathcal N(x|\mu,\sigma^2)
+\right]dx}\\
+&=\int_{-\infty}^{+\infty}{\left[-\sigma^2\mathcal N(x|\mu,\sigma^2) + (x-u)^2\mathcal N(x|\mu,\sigma^2)\right]dx}\\
+&=-\sigma^2 + \int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)x^2dx} - \mu^2
+\end{aligned}
+$$</div>
+
+<p>可得：</p>
+
+<div>$$\Bbb E[x^2]=\int_{-\infty}^{+\infty}{\mathcal N(x|\mu,\sigma^2)x^2dx} = \mu^2+\sigma^2$$</div>
+
+<h1 id="1-2-多维高斯分布">1.2 多维高斯分布</h1>
+
+<div>$$\mathcal N({\bf x}|\mu, \Sigma)=\frac{1}{(2\pi)^{\frac D 2}\mid\Sigma\mid}\exp\left\{-\frac{1}{2}({\bf x}-\mu)^T{\mid\Sigma\mid}^{-1}({\bf x}-\mu)\right\}$$</div>
+
+<h1 id="1-3-高斯分布的最大似然估计">1.3 高斯分布的最大似然估计</h1>
+
+<p>集合${\tt x}=(x_1,x_2,\ldots,x_N)^T$是对标量$x$的$N$次观测。假设这个集合的$N$个标量，独立的取自以$\mu$为均值，$\sigma^2$为方差的高斯分布，（独立取自同一分布的数据点，被称作独立同分布，independent and identically distributed, i.i.d）。</p>
+
+<p>因为数据集${\tt x}$是独立同分布，则该数据集出现的概率为：</p>
+
+<div>$$p({\tt x}|\mu,\sigma^2)=\prod_{n=1}^N\mathcal N(x_n|\mu,\sigma^2)\tag{1.3.1}\label{1.3.1}$$</div>
+
+<p>公式$\eqref{1.3.1}$即是高斯分布的似然函数。根据观测数据集确定概率分布参数的一个通用标准是找到一组参数使得似然函数取得最大值（即该观测数据集出现的概率最大）。
+<!-- 根据数据集在参数空间里搜索最符合观测结果的参数--></p>
+
+<p>公式$\eqref{1.3.1}$小概率连乘，容易造成计算精度下溢。通常取该似然函数的对数作为似然函数，由于对数函数单调递增，所以对数似然函数的最大值等价于原函数的最大值。</p>
+
+<div>
+$$
+\begin{aligned}
+\arg\max_{\mu,\sigma^2}p({\tt x}|\mu,\sigma^2)&=\arg\max_{\mu,\sigma^2}\ln p({\tt x}|\mu,\sigma^2)\\
+&=\arg\max_{\mu,\sigma^2}\sum_{n=1}^N\left\{-\frac{1}{2}\ln2\pi\sigma^2-\frac{1}{2\sigma^2}(x_n-\mu)^2\right\}\\
+&=\arg\max_{\mu,\sigma^2}\left\{-\frac{1}{2\sigma^2}\sum_{n=1}^N{(x_n-\mu)^2}-\frac{N}{2}\ln\sigma^2-\frac{N}{2}\ln 2\pi\right\}
+\end{aligned}
+\tag{1.3.2}\label{1.3.2}
+$$
+
+$$
+\arg\max_{\mu,\sigma^2}\ln p({\tt x}|\mu,\sigma^2)\Leftrightarrow
+\begin{cases}
+\frac{\partial}{\partial\mu}\ln p({\tt x}|\mu,\sigma^2)=0\\
+\frac{\partial}{\partial\sigma^2}\ln p({\tt x}|\mu,\sigma^2) = 0
+\end{cases}
+\tag{1.3.3}\label{1.3.3}
+$$
+
+$$
+\begin{aligned}
+&\frac{\partial}{\partial\mu}\ln p({\tt x}|\mu,\sigma^2)=0\\
+&\sum_{n=1}^N{-2(x_n-\mu_{ML})}=0\\
+&\mu_{ML}=\frac{1}{N}\sum_{n=1}^N{x_n}
+\end{aligned}
+\tag{1.3.4}\label{1.3.4}
+$$
+
+$$
+\begin{aligned}
+&\frac{\partial}{\partial\sigma^2}\ln p({\tt x}|\mu,\sigma^2)=0\\
+&\frac{1}{2\sigma^4}\sum_{n=1}^N\left\{(x_n-\mu)^2\right\}-\frac{N}{2\sigma^2}=0\\
+&\sigma^2_{ML}=\frac{1}{N}\sum_{n=1}^N(x_n-\mu_{ML})^2
+\end{aligned}
+\tag{1.3.5}\label{1.3.5}
+$$
+</div>
+
+    </div>
+
+    
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/prml/">PRML</a>
+          <a href="/tags/gaussion/">Gaussion</a>
+          <a href="/tags/distribution/">distribution</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/prml-bayesian-probability/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">贝叶斯概率</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      
+<section id="isso-thread"></section>
+
+<div class="social-links">
+      <a href="mailto:yufengcui1018@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://mstry.github.com" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">rockyu</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
